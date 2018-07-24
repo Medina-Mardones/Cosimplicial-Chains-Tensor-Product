@@ -9,6 +9,7 @@ Created on Mon Jul 23 11:45:12 2018
 import numpy as np
 import itertools
 
+
 # Constructing the ordered bases 
 
 def get_gr_gen(dim):
@@ -79,7 +80,6 @@ def get_gr_partial(dim):
     
     return(gr_partial)
 
-
 def get_tensor_partial(dim):
     '''computes the matrix representing the dim-boundary in the tensor product 
     (with respect to the canonical basis lexicografically ordered)'''
@@ -134,25 +134,37 @@ def get_tensor_partial(dim):
 
 dim = 2 
 
-print('\nConsider the tensor product of the chains of a', dim,'- simplex with themselves.')
+print('\nConsider the tensor product of the chains of a '+str(dim)+'-simplex with themselves.')
 
-print('\nLet B be the following ordered basis for the degree',dim,'part of this complex:\n')
-print(get_tensor_gr_gen(dim)[dim])
+print('\nLet Bdom be the following ordered basis for the degree '+str(dim)+' part of this complex:\n')
+Bdom = get_tensor_gr_gen(dim)[dim]
+print(Bdom )
 
 print('\nConsider the involution T given by transposition of factors. It induces an involution on B.')
 print('The following list contains the positions, with respect to the order of B, of transpositionally related elements (b, Tb):\n')
 print(get_transp_pairs(dim))
-print('\nA vector $c=(c_i)$ with respect to this basis is called unhampered if the product $c_i (Tc)_i$ is 0.')
+print('\nA vector $c=(c_i)$ with respect to this basis is called unhampered if for each $i$ the product $c_i (Tc)_i$ is 0.')
 
-print('\nLet B\' be the following ordered basis for the degree',dim-1,'part of this complex:\n')
-print(get_tensor_gr_gen(dim)[dim-1])
+print('\nLet Bcod be the following ordered basis for the degree',dim-1,'part of this complex:\n')
+Bcod = get_tensor_gr_gen(dim)[dim-1]
+print(Bcod, len(Bcod))
 
 print('\nNow consider the kernel K of the matrix M representing the boundary in degree',dim,'with respect to B and B\' \n')
 print(get_tensor_partial(dim))
         
-print('\nAn element c is called cpc if (s_i \otimes s_i)(c) is 0, where s_i is the induced i-degeracy map.\n')
-print('Conjecture: The only unhampered vector representing a cpc element in K is 0.')
+print('\nAn element $c$ is called cpc if $(s_i \otimes s_i)(c)$ is 0 for each $i$. Here $s_i$ is the induced $i$-degeracy map.\n')
+print('Conjecture: The only unhampered vector representing a cpc element in K is 0.\n')
 
+
+from sympy import Matrix
+
+M = Matrix(get_tensor_partial(dim))
+zeros = Matrix(np.zeros((len(Bcod),1)))
+
+sol = M.gauss_jordan_solve(zeros, freevar=True)[0]
+free = M.gauss_jordan_solve(zeros, freevar=True)[1]
+
+print(np.array(sol), free)
 
 
 
