@@ -155,33 +155,16 @@ print(get_tensor_partial(dim))
 print('\nAn element $c$ is called cpc if $(s_i \otimes s_i)(c)$ is 0 for each $i$. Here $s_i$ is the induced $i$-degeracy map.\n')
 print('Conjecture: The only unhampered vector representing a cpc element in K is 0.\n')
 
-
 from sympy import Matrix
 
 M = Matrix(get_tensor_partial(dim))
 zeros = Matrix(np.zeros((len(Bcod),1)))
-
-print('The subspace K consists of the elements\n')
-
 sol = M.gauss_jordan_solve(zeros, freevar=True)[0]
 free = M.gauss_jordan_solve(zeros, freevar=True)[1]
 
+print('The subspace K consists of the elements\n')
 print(np.array(sol))
 
 print('\nwhere\n')
 print(np.array(free))
 print('\nare/is the free variable(s)')
-
-
-
-
-
-
-    
-
-
-
-
-
-        
-    
