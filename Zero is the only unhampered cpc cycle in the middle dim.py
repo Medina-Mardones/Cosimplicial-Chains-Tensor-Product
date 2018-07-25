@@ -132,7 +132,7 @@ def get_tensor_partial(dim):
 
 # Stating the conjecture 
 
-dim = 2 
+dim = 1 
 
 print('\nConsider the tensor product of the chains of a '+str(dim)+'-simplex with themselves.')
 
@@ -161,10 +161,18 @@ from sympy import Matrix
 M = Matrix(get_tensor_partial(dim))
 zeros = Matrix(np.zeros((len(Bcod),1)))
 
+print('The subspace K consists of the elements\n')
+
 sol = M.gauss_jordan_solve(zeros, freevar=True)[0]
 free = M.gauss_jordan_solve(zeros, freevar=True)[1]
 
-print(np.array(sol), free)
+print(np.array(sol))
+
+print('\nwhere\n')
+print(np.array(free))
+print('\nare/is the free variable(s)')
+
+
 
 
 
