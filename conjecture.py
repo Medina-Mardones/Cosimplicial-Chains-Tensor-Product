@@ -180,6 +180,18 @@ sol = sol.subs(dict(zip(dummies, my_syms)))
 eqs = []
 
 for pair in pairs :
-    eqs.append(sol[pair[0]]*sol[pair[1]])
+    if sol[pair[0]] != sol[pair[1]] :
+        eqs.append(sol[pair[0]]*sol[pair[1]])
 
 print("\nThe unhampered elements in K are:\n",solve(eqs))
+
+cpc_unhamp_cycle = Matrix(np.zeros((len(Bdom),1)))
+cpc_unhamp_cycle[4] = 1
+cpc_unhamp_cycle[7] = -1
+cpc_unhamp_cycle[10] = 1
+cpc_unhamp_cycle[12] = -1
+cpc_unhamp_cycle[14] = 1
+
+counterexample = np.array(cpc_unhamp_cycle)
+
+print("\nCOUNTEREXAMPLE\n",np.int16(counterexample))
