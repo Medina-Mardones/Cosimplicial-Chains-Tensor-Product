@@ -132,7 +132,7 @@ def get_tensor_partial(dim):
 
 # Stating the conjecture 
 
-dim = 1 
+dim = 2 
 
 print('\nConsider the tensor product of the chains of a '+str(dim)+'-simplex with themselves.')
 
@@ -142,7 +142,8 @@ print(Bdom )
 
 print('\nConsider the involution T given by transposition of factors. It induces an involution on B.')
 print('The following list contains the positions, with respect to the order of B, of transpositionally related elements (b, Tb):\n')
-print(get_transp_pairs(dim))
+pairs = get_transp_pairs(dim)
+print(pairs)
 print('\nA vector $c=(c_i)$ with respect to this basis is called unhampered if for each $i$ the product $c_i (Tc)_i$ is 0.')
 
 print('\nLet Bcod be the following ordered basis for the degree',dim-1,'part of this complex:\n')
@@ -163,8 +164,22 @@ sol = M.gauss_jordan_solve(zeros, freevar=True)[0]
 free = M.gauss_jordan_solve(zeros, freevar=True)[1]
 
 print('The subspace K consists of the elements\n')
-print(np.array(sol))
+solnp = np.array(sol)
+print(solnp)
 
 print('\nwhere\n')
 print(np.array(free))
 print('\nare/is the free variable(s)')
+
+from sympy import Function, symbols, solve
+
+dummies = list(sol.free_symbols)
+my_syms = symbols("x0:{}".format(len(dummies)))   # Example: symbols("x0:3") creates x0, x1, x2
+sol = sol.subs(dict(zip(dummies, my_syms)))
+
+eqs = []
+
+for pair in pairs :
+    eqs.append(sol[pair[0]]*sol[pair[1]])
+
+print("\nThe unhampered elements in K are:\n",solve(eqs))
