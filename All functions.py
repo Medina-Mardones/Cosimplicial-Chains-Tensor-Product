@@ -1,3 +1,7 @@
+''' All functions developed for the project. Some were not needed 
+to find the counterexample
+'''
+
 import numpy as np
 import itertools
 from sympy import Matrix
