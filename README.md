@@ -1,6 +1,6 @@
 # Constructing a counterexample for the CPC-conjecture 
 
-The script presented here constructs a counterexample for a conjecture arising in connection to the main theorem of "An Axiomatic Characterization of Steenrod cup-i products" DOI arXiv:1810.06505 
+The script presented here constructs a counterexample for a conjecture arising in connection to the main theorem of "An Axiomatic Characterization of Steenrod cup-i products" arXiv:1810.06505 
 
 The following is a self-contained reformulation of the conjecture:
 
