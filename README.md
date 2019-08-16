@@ -21,4 +21,4 @@ Let s_i : C_n[m] --> C_n[m-1] be the linear map induced by the only surjective o
 ## Conjecture
 ##### The only unhampered degree n CPC cycles in (C[m] x C[m]) for 0 < n < m-1 is 0.
 
-The script construct counterexamples for any reasonable small n and m.
+The script construct counterexamples for any reasonably small n and m.
